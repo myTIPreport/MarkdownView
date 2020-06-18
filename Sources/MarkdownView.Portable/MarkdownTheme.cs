@@ -57,6 +57,12 @@
                 FontSize = baseFontSize,
             };
 
+            List = new ListMarkdownStyle
+            {
+                Attributes = FontAttributes.None,
+                FontSize = baseFontSize,
+            };
+
             Code = new MarkdownStyle
             {
                 Attributes = FontAttributes.None,

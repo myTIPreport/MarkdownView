@@ -12,7 +12,7 @@
     <PackageVersion>0.0.0.0</PackageVersion>
     <Product>$(AssemblyName) ($(TargetFramework))</Product>
     <Authors>Aloïs Deniel</Authors>
-    <PackageId>Xam.Forms.MarkdownView</PackageId>
+    <PackageId>Xam.Forms.MarkdownView.MTR</PackageId>
     <Title>MarkdownView for Xamarin.Forms</Title>
     <Summary>Native markdown rendering for Xamarin.Forms.</Summary>
     <Description>Native markdown rendering for Xamarin.Forms.</Description>
