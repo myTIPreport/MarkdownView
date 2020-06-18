@@ -6,6 +6,7 @@
     using System.IO;
     using System.Linq;
     using Extensions;
+    using Markdig;
     using Markdig.Syntax;
     using Markdig.Syntax.Inlines;
     using Xamarin.Forms;
@@ -67,12 +68,14 @@
 
             if (!string.IsNullOrEmpty(Markdown))
             {
-                MarkdownDocument parsed = Markdig.Markdown.Parse(Markdown);
+                MarkdownDocument parsed = Markdig.Markdown.Parse(Markdown, s_pipeline);
                 Render(parsed.AsEnumerable());
             }
 
             Content = stack;
         }
+
+        private static readonly MarkdownPipeline s_pipeline = new MarkdownPipelineBuilder().UseAdvancedExtensions().Build();
 
         private void Render(IEnumerable<Block> blocks)
         {
