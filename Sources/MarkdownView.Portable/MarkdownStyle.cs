@@ -6,6 +6,8 @@
     {
         public FontAttributes Attributes { get; set; } = FontAttributes.None;
 
+        public TextDecorations TextDecorations { get; set; } = TextDecorations.None;
+
         public float FontSize { get; set; } = 12;
 
         public Color ForegroundColor { get; set; } = Color.Black;

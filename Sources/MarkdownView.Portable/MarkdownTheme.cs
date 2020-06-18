@@ -55,6 +55,7 @@
             {
                 Attributes = FontAttributes.None,
                 FontSize = baseFontSize,
+                TextDecorations = TextDecorations.Underline
             };
 
             List = new ListMarkdownStyle
@@ -148,7 +149,7 @@
             Heading4.ForegroundColor = DefaultTextColor;
             Heading5.ForegroundColor = DefaultTextColor;
             Heading6.ForegroundColor = DefaultTextColor;
-            Link.ForegroundColor = DefaultAccentColor;
+            Link.ForegroundColor = DefaultTextColor;
             Code.ForegroundColor = DefaultTextColor;
             Code.BackgroundColor = DefaultCodeBackground;
             Quote.ForegroundColor = DefaultQuoteTextColor;
@@ -187,7 +188,7 @@
             Heading4.ForegroundColor = DefaultTextColor;
             Heading5.ForegroundColor = DefaultTextColor;
             Heading6.ForegroundColor = DefaultTextColor;
-            Link.ForegroundColor = DefaultAccentColor;
+            Link.ForegroundColor = DefaultTextColor;
             Code.ForegroundColor = DefaultTextColor;
             Code.BackgroundColor = DefaultCodeBackground;
             Quote.ForegroundColor = DefaultQuoteTextColor;

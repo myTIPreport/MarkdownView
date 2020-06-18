@@ -283,7 +283,7 @@
 
             Label label = new Label
             {
-                FormattedText = CreateFormatted(block.Inline, style.FontFamily, style.Attributes, foregroundColor, style.BackgroundColor, style.FontSize),
+                FormattedText = CreateFormatted(block.Inline, style.FontFamily, style.Attributes, foregroundColor, style.BackgroundColor, style.FontSize, style.TextDecorations),
             };
 
             AttachLinks(label);
@@ -311,7 +311,7 @@
             Color foregroundColor = isQuoted ? Theme.Quote.ForegroundColor : style.ForegroundColor;
             Label label = new Label
             {
-                FormattedText = CreateFormatted(block.Inline, style.FontFamily, style.Attributes, foregroundColor, style.BackgroundColor, style.FontSize),
+                FormattedText = CreateFormatted(block.Inline, style.FontFamily, style.Attributes, foregroundColor, style.BackgroundColor, style.FontSize, style.TextDecorations),
             };
             AttachLinks(label);
             stack.Children.Add(label);
@@ -385,13 +385,13 @@
             });
         }
 
-        private FormattedString CreateFormatted(ContainerInline inlines, string family, FontAttributes attributes, Color foregroundColor, Color backgroundColor, float size)
+        private FormattedString CreateFormatted(ContainerInline inlines, string family, FontAttributes attributes, Color foregroundColor, Color backgroundColor, float size, TextDecorations textDecorations)
         {
             FormattedString fs = new FormattedString();
 
             foreach (Inline inline in inlines)
             {
-                Span[] spans = CreateSpans(inline, family, attributes, foregroundColor, backgroundColor, size);
+                Span[] spans = CreateSpans(inline, family, attributes, foregroundColor, backgroundColor, size, textDecorations);
                 if (spans != null)
                 {
                     foreach (Span span in spans)
@@ -404,7 +404,7 @@
             return fs;
         }
 
-        private Span[] CreateSpans(Inline inline, string family, FontAttributes attributes, Color foregroundColor, Color backgroundColor, float size)
+        private Span[] CreateSpans(Inline inline, string family, FontAttributes attributes, Color foregroundColor, Color backgroundColor, float size, TextDecorations textDecorations)
         {
             switch (inline)
             {
@@ -415,6 +415,7 @@
                         {
                             Text = literal.Content.Text.Substring(literal.Content.Start, literal.Content.Length),
                             FontAttributes = attributes,
+                            TextDecorations = textDecorations,
                             ForegroundColor = foregroundColor,
                             BackgroundColor = backgroundColor,
                             FontSize = size,
@@ -423,8 +424,8 @@
                     };
 
                 case EmphasisInline emphasis:
-                    FontAttributes childAttributes = attributes | (emphasis.IsDouble ? FontAttributes.Bold : FontAttributes.Italic);
-                    return emphasis.SelectMany(x => CreateSpans(x, family, childAttributes, foregroundColor, backgroundColor, size)).ToArray();
+                    FontAttributes childAttributes = attributes | (emphasis.DelimiterCount == 2 ? FontAttributes.Bold : FontAttributes.Italic);
+                    return emphasis.SelectMany(x => CreateSpans(x, family, childAttributes, foregroundColor, backgroundColor, size, textDecorations)).ToArray();
 
                 case LineBreakInline breakline:
                     return new[] { new Span { Text = "\n" } };
@@ -456,7 +457,7 @@
                     }
                     else
                     {
-                        Span[] spans = link.SelectMany(x => CreateSpans(x, Theme.Link.FontFamily ?? family, Theme.Link.Attributes, Theme.Link.ForegroundColor, Theme.Link.BackgroundColor, size)).ToArray();
+                        Span[] spans = link.SelectMany(x => CreateSpans(x, Theme.Link.FontFamily ?? family, Theme.Link.Attributes, Theme.Link.ForegroundColor, Theme.Link.BackgroundColor, size, textDecorations)).ToArray();
                         links.Add(new KeyValuePair<string, string>(string.Join("", spans.Select(x => x.Text)), url));
                         return spans;
                     }
@@ -476,6 +477,7 @@
                         {
                             Text = code.Content,
                             FontAttributes = Theme.Code.Attributes,
+                            TextDecorations = Theme.Code.TextDecorations,
                             FontSize = size,
                             FontFamily = Theme.Code.FontFamily,
                             ForegroundColor = Theme.Code.ForegroundColor,
