@@ -23,6 +23,7 @@
     <PackageIconUrl>https://raw.githubusercontent.com/aloisdeniel/MarkdownView/master/Documentation/Logo.png</PackageIconUrl>
     <PackageLicenseUrl>https://github.com/aloisdeniel/MarkdownView/blob/master/LICENSE</PackageLicenseUrl>
     <PackageProjectUrl>https://github.com/aloisdeniel/MarkdownView</PackageProjectUrl>
+    <RootNamespace>Xam.Forms.Markdown</RootNamespace>
   </PropertyGroup>
     
   <ItemGroup>
@@ -30,5 +31,7 @@
     <PackageReference Include="Markdig" Version="0.15.0" />
     <PackageReference Include="SkiaSharp.Svg" Version="1.60.0" />
   </ItemGroup>
+    
+  <ProjectExtensions><VisualStudio><UserProperties XamarinHotReloadXFormsNugetUpgradeInfoBarXamFormsMarkdownViewHideInfoBar="True" /></VisualStudio></ProjectExtensions>
     
 </Project>

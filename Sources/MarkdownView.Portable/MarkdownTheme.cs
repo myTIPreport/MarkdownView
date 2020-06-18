@@ -1,77 +1,77 @@
-﻿
-namespace Xam.Forms.Markdown
+﻿namespace Xam.Forms.Markdown
 {
     using Xamarin.Forms;
 
     public class MarkdownTheme
     {
-        public MarkdownTheme()
+        public MarkdownTheme(
+            int baseFontSize = 12)
         {
-            this.Paragraph = new MarkdownStyle
+            Paragraph = new MarkdownStyle
             {
                 Attributes = FontAttributes.None,
-                FontSize = 12,
+                FontSize = baseFontSize,
             };
 
-            this.Heading1 = new MarkdownStyle
+            Heading1 = new MarkdownStyle
             {
                 Attributes = FontAttributes.Bold,
                 BorderSize = 1,
-                FontSize = 26,
+                FontSize = baseFontSize + 14,
             };
 
-            this.Heading2 = new MarkdownStyle
+            Heading2 = new MarkdownStyle
             {
                 Attributes = FontAttributes.Bold,
                 BorderSize = 1,
-                FontSize = 22,
+                FontSize = baseFontSize + 10,
             };
 
-            this.Heading3 = new MarkdownStyle
+            Heading3 = new MarkdownStyle
             {
                 Attributes = FontAttributes.Bold,
-                FontSize = 20,
+                FontSize = baseFontSize + 8,
             };
 
-            this.Heading4 = new MarkdownStyle
+            Heading4 = new MarkdownStyle
             {
                 Attributes = FontAttributes.Bold,
-                FontSize = 18,
+                FontSize = baseFontSize + 6,
             };
 
-            this.Heading5 = new MarkdownStyle
+            Heading5 = new MarkdownStyle
             {
                 Attributes = FontAttributes.Bold,
-                FontSize = 16,
+                FontSize = baseFontSize + 4,
             };
 
-            this.Heading6 = new MarkdownStyle
+            Heading6 = new MarkdownStyle
             {
                 Attributes = FontAttributes.Bold,
-                FontSize = 14,
+                FontSize = baseFontSize + 2,
             };
 
-            this.Link = new MarkdownStyle
+            Link = new MarkdownStyle
             {
                 Attributes = FontAttributes.None,
-                FontSize = 12,
+                FontSize = baseFontSize,
             };
 
-            this.Code = new MarkdownStyle
+            Code = new MarkdownStyle
             {
                 Attributes = FontAttributes.None,
-                FontSize = 12,
+                FontSize = baseFontSize,
             };
 
-            this.Quote = new MarkdownStyle
+            Quote = new MarkdownStyle
             {
                 Attributes = FontAttributes.None,
                 BorderSize = 4,
-                FontSize = 12,
+                FontSize = baseFontSize,
                 BackgroundColor = Color.Gray.MultiplyAlpha(.1),
             };
 
-            this.Separator = new MarkdownStyle
+            Separator = new MarkdownStyle
             {
                 BorderSize = 2,
             };
@@ -91,15 +91,17 @@ namespace Xam.Forms.Markdown
 
         public Color BackgroundColor { get; set; }
 
-        public MarkdownStyle Paragraph { get; set; } 
+        public MarkdownStyle Paragraph { get; set; }
 
-        public MarkdownStyle Heading1 { get; set; } 
+        public ListMarkdownStyle List { get; set; }
 
-        public MarkdownStyle Heading2 { get; set; } 
+        public MarkdownStyle Heading1 { get; set; }
 
-        public MarkdownStyle Heading3 { get; set; } 
+        public MarkdownStyle Heading2 { get; set; }
 
-        public MarkdownStyle Heading4 { get; set; } 
+        public MarkdownStyle Heading3 { get; set; }
+
+        public MarkdownStyle Heading4 { get; set; }
 
         public MarkdownStyle Heading5 { get; set; }
 
@@ -113,29 +115,37 @@ namespace Xam.Forms.Markdown
 
         public MarkdownStyle Code { get; set; }
 
-        public float Margin { get; set; } = 10;
+        /// <summary>
+        /// Vertical spacing between markdown elements
+        /// </summary>
+        public float VerticalSpacing { get; set; } = 10;
+
+        /// <summary>
+        /// Padding for the Markdown container.
+        /// </summary>
+        public Thickness ControlPadding { get; set; } = new Thickness(10);
     }
 
     public class LightMarkdownTheme : MarkdownTheme
     {
         public LightMarkdownTheme()
         {
-            this.BackgroundColor = DefaultBackgroundColor;
-            this.Paragraph.ForegroundColor = DefaultTextColor;
-            this.Heading1.ForegroundColor = DefaultTextColor;
-            this.Heading1.BorderColor = DefaultSeparatorColor;
-            this.Heading2.ForegroundColor = DefaultTextColor;
-            this.Heading2.BorderColor = DefaultSeparatorColor;
-            this.Heading3.ForegroundColor = DefaultTextColor;
-            this.Heading4.ForegroundColor = DefaultTextColor;
-            this.Heading5.ForegroundColor = DefaultTextColor;
-            this.Heading6.ForegroundColor = DefaultTextColor;
-            this.Link.ForegroundColor = DefaultAccentColor;
-            this.Code.ForegroundColor = DefaultTextColor;
-            this.Code.BackgroundColor = DefaultCodeBackground;
-            this.Quote.ForegroundColor = DefaultQuoteTextColor;
-            this.Quote.BorderColor = DefaultQuoteBorderColor;
-            this.Separator.BorderColor = DefaultSeparatorColor;
+            BackgroundColor = DefaultBackgroundColor;
+            Paragraph.ForegroundColor = DefaultTextColor;
+            Heading1.ForegroundColor = DefaultTextColor;
+            Heading1.BorderColor = DefaultSeparatorColor;
+            Heading2.ForegroundColor = DefaultTextColor;
+            Heading2.BorderColor = DefaultSeparatorColor;
+            Heading3.ForegroundColor = DefaultTextColor;
+            Heading4.ForegroundColor = DefaultTextColor;
+            Heading5.ForegroundColor = DefaultTextColor;
+            Heading6.ForegroundColor = DefaultTextColor;
+            Link.ForegroundColor = DefaultAccentColor;
+            Code.ForegroundColor = DefaultTextColor;
+            Code.BackgroundColor = DefaultCodeBackground;
+            Quote.ForegroundColor = DefaultQuoteTextColor;
+            Quote.BorderColor = DefaultQuoteBorderColor;
+            Separator.BorderColor = DefaultSeparatorColor;
         }
 
         public static readonly Color DefaultBackgroundColor = Color.FromHex("#ffffff");
@@ -157,22 +167,22 @@ namespace Xam.Forms.Markdown
     {
         public DarkMarkdownTheme()
         {
-            this.BackgroundColor = DefaultBackgroundColor;
-            this.Paragraph.ForegroundColor = DefaultTextColor;
-            this.Heading1.ForegroundColor = DefaultTextColor;
-            this.Heading1.BorderColor = DefaultSeparatorColor;
-            this.Heading2.ForegroundColor = DefaultTextColor;
-            this.Heading2.BorderColor = DefaultSeparatorColor;
-            this.Heading3.ForegroundColor = DefaultTextColor;
-            this.Heading4.ForegroundColor = DefaultTextColor;
-            this.Heading5.ForegroundColor = DefaultTextColor;
-            this.Heading6.ForegroundColor = DefaultTextColor;
-            this.Link.ForegroundColor = DefaultAccentColor;
-            this.Code.ForegroundColor = DefaultTextColor;
-            this.Code.BackgroundColor = DefaultCodeBackground;
-            this.Quote.ForegroundColor = DefaultQuoteTextColor;
-            this.Quote.BorderColor = DefaultQuoteBorderColor;
-            this.Separator.BorderColor = DefaultSeparatorColor;
+            BackgroundColor = DefaultBackgroundColor;
+            Paragraph.ForegroundColor = DefaultTextColor;
+            Heading1.ForegroundColor = DefaultTextColor;
+            Heading1.BorderColor = DefaultSeparatorColor;
+            Heading2.ForegroundColor = DefaultTextColor;
+            Heading2.BorderColor = DefaultSeparatorColor;
+            Heading3.ForegroundColor = DefaultTextColor;
+            Heading4.ForegroundColor = DefaultTextColor;
+            Heading5.ForegroundColor = DefaultTextColor;
+            Heading6.ForegroundColor = DefaultTextColor;
+            Link.ForegroundColor = DefaultAccentColor;
+            Code.ForegroundColor = DefaultTextColor;
+            Code.BackgroundColor = DefaultCodeBackground;
+            Quote.ForegroundColor = DefaultQuoteTextColor;
+            Quote.BorderColor = DefaultQuoteBorderColor;
+            Separator.BorderColor = DefaultSeparatorColor;
         }
 
         public static readonly Color DefaultBackgroundColor = Color.FromHex("#2b303b");
