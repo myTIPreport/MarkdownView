@@ -457,7 +457,7 @@
                     }
                     else
                     {
-                        Span[] spans = link.SelectMany(x => CreateSpans(x, Theme.Link.FontFamily ?? family, Theme.Link.Attributes, Theme.Link.ForegroundColor, Theme.Link.BackgroundColor, size, textDecorations)).ToArray();
+                        Span[] spans = link.SelectMany(x => CreateSpans(x, Theme.Link.FontFamily ?? family, Theme.Link.Attributes, Theme.Link.ForegroundColor, Theme.Link.BackgroundColor, size, Theme.Link.TextDecorations)).ToArray();
                         links.Add(new KeyValuePair<string, string>(string.Join("", spans.Select(x => x.Text)), url));
                         return spans;
                     }
