@@ -134,7 +134,9 @@
 
     public class LightMarkdownTheme : MarkdownTheme
     {
-        public LightMarkdownTheme()
+        public LightMarkdownTheme(
+            int baseFontSize = 12)
+            : base(baseFontSize)
         {
             BackgroundColor = DefaultBackgroundColor;
             Paragraph.ForegroundColor = DefaultTextColor;
@@ -171,7 +173,9 @@
 
     public class DarkMarkdownTheme : MarkdownTheme
     {
-        public DarkMarkdownTheme()
+        public DarkMarkdownTheme(
+            int baseFontSize = 12)
+            : base(baseFontSize)
         {
             BackgroundColor = DefaultBackgroundColor;
             Paragraph.ForegroundColor = DefaultTextColor;
